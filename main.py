@@ -126,8 +126,9 @@ def main():
                     response.raise_for_status()  # Raise an exception for HTTP errors
                     prompt_translated = response.json()["data"]["translated"]
                     print("Translate API Response:", prompt_translated)
+                    break
 
-            except httpx.HTTPStatusError as exc:
+            except Exception as exc:
                 print(f"Error (Attempt {attempt + 1}): {exc}")
                 if attempt < max_retries:
                     print(f"Retrying in {retry_delay} seconds...")
@@ -206,7 +207,7 @@ def main():
             print(f"Error: {exc}")
 
         # Wait 7 to 23 seconds
-        interval_random_number = random.randint(7, 23)
+        interval_random_number = random.randint(3, 11)
         print(f"Wait for {interval_random_number} seconds")
         time.sleep(interval_random_number)
 
